@@ -24,13 +24,14 @@ let getSearchResult = function () {
                     let title = pages[page].title,
                         extract = pages[page].extract,
                         url = "http://en.wikipedia.org/?curid=" + pages[page].pageid;
-                    console.log(title, extract);
                     $(resTemplate).find(".searchresult-heading a").attr("href", url).text(title).end().find(".searchresult").text(extract).end().appendTo(".searchresults ul");
                 }
             }
         },
         error: function (jqxhr, status, statusText) {
-            console.log(status, statusText);
+            $(".searchresults ul").empty();
+            $('<li><div class="searcherror"></div></li>').find(".searcherror").text(
+                "Error loading search results").css("color", "red").end().appendTo(".searchresults ul");
         }
     });
 };
@@ -42,7 +43,7 @@ $(document).ready(function () {
         if (event.which === 13) {
             // Check for empty search input
             if ($("input[type=search]").val()) {
-                getSearchResult()
+                getSearchResult();
             } else {
                 $(".searchresults ul").empty();
                 $('<li><div class="searcherror"></div></li>').find(".searcherror").text("You cannot make an empty search").css("color", "red").end().appendTo(".searchresults ul");
@@ -54,10 +55,11 @@ $(document).ready(function () {
     $("#search").click(function () {
         // Check for empty search input
         if ($("input[type=search]").val()) {
-            getSearchResult()
+            getSearchResult();
         } else {
             $(".searchresults ul").empty();
-            $('<li><div class="searcherror"></div></li>').find(".searcherror").text("You cannot make an empty search").css("color", "red").end().appendTo(".searchresults ul");
+            $('<li><div class="searcherror"></div></li>').find(".searcherror").text(
+                "You cannot make an empty search").css("color", "red").end().appendTo(".searchresults ul");
         }
     });
 });
