@@ -15,7 +15,9 @@ let getSearchResult = function () {
 </div>
 <div class="searchresult"></div> 
 </li>`;
-            let pages;
+            let pages,
+                frag = document.createDocumentFragment();
+
             $(".searchresults ul").empty();
             if (res.query) {
                 pages = res.query.pages;
@@ -24,8 +26,9 @@ let getSearchResult = function () {
                     let title = pages[page].title,
                         extract = pages[page].extract,
                         url = "http://en.wikipedia.org/?curid=" + pages[page].pageid;
-                    $(resTemplate).find(".searchresult-heading a").attr("href", url).text(title).end().find(".searchresult").text(extract).end().appendTo(".searchresults ul");
+                    $(resTemplate).find(".searchresult-heading a").attr("href", url).text(title).end().find(".searchresult").text(extract).end().appendTo(frag);
                 }
+                $(".searchresults ul").append(frag);
             }
         },
         error: function (jqxhr, status, statusText) {
@@ -38,6 +41,7 @@ let getSearchResult = function () {
 
 
 $(document).ready(function () {
+    // Handle keypress on "Enter Key"
     $("input[type=search]").keypress(function (event) {
         // if key is "Enter key"
         if (event.which === 13) {
@@ -52,6 +56,7 @@ $(document).ready(function () {
             return false;
         }
     });
+    // Handle clicks on search button
     $("#search").click(function () {
         // Check for empty search input
         if ($("input[type=search]").val()) {

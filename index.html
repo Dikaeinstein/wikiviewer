@@ -5,22 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Wikipedia Viewer</title>
         <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
-        <link rel="stylesheet" href="public/css/bootstrap.min.css">
         <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="public/css/normalize.css" />
+        <link rel="stylesheet" href="public/css/bootstrap.min.css">
         <link rel="stylesheet" href="public/css/wikiviewer.css" />
     </head>
     <body class="container">
         <header class="text-center">
             <h1><span id="wiki">wiki</span><span id="viewer">viewer</span></h1>
         </header>
-        <main class="text-center">
+        <main class="text-center row">
             <input type="search" required placeholder="search wikipedia" title="search wikipedia"/>
             <div class="buttons text-center">
                 <button id="search" class="btn-wiki">search wikipedia</button>
                 <a id="random" class="btn-wiki" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">get random article</a>
             </div>
-            <div class="searchresults text-center">
+            <div class="searchresults center-block">
                 <ul></ul>
             </div>
         </main>
